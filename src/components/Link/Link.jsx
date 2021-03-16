@@ -30,7 +30,7 @@ const Link = (props) => {
   return (
     <LinkedElement
 
-      fullWidth= {fullWidth}
+      fullWidth={fullWidth}
       href={disabled ? undefined : url}
       disabled={disabled}
     >
