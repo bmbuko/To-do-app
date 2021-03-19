@@ -1,79 +1,63 @@
 import React from "react";
 import styled from "styled-components";
+import Layout from "../../components/Layout/Layout";
+import { Checkbox, IconButton } from "@material-ui/core";
+import { Delete, Edit } from "@material-ui/icons";
 
-const Header = styled.header`
-  background: #17c3b2;
-  color: white;
-  text-align: center;
-  font-family: Arial, sans-serif;
-  letter-spacing: -1px;
-  padding: 0.25rem;
-`;
-const Title = styled.h1`
-  font-family: Arial, sans-serif;
-  letter-spacing: -1px;
-`;
-const Content = styled.main``;
-const Footer = styled.footer`
-  background: #AAAAAA;
-  position: fixed;
-  color: white;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  text-align: center;
-`;
 const List = styled.ul`
   list-style: none;
-  font-family: Arial, sans-serif;
-  display:flex;
-  width:100%;
-  padding:0;
-  margin:0;
-  text-transform:uppercase;
-  user-select:none
+  padding: 0;
+  margin: 0;
 `;
-const Link = styled.a`
-font-weight:bold;
-display:block;
-padding:1rem;
-text-transform:uppercase
-user-select:none
-cursor:pointer;
+const Item = styled.li`
+  margin: 0.1rem 0;
+  padding: 0.5rem 1rem;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  border-bottom: 1px dotted grey;
+`;
+const Name = styled.h2`
+  flex-grow: 1;
+  text-align: center;
+  font-size: 1.1rem;
+`;
+//const Checkbox =styled.input`
 
+const Task = (props) => {
+  const { id, name, checked,onCheckToggle,onDeleteItem } = props;
 
-&:hover{
-  background:rgba(0, 0 ,0 ,0.2)
-}
-&:active{
-  background:rgba(0, 0 ,0 ,0.4)
-}
-`
-const LinkWrap = styled.li`
-width:50%
-`
-
-const Home = () => {
+  const handleCheckToggle =()=> onCheckToggle(id)
+  const handleDeleteItem =()=> onDeleteItem(id)
   return (
-    <>
-      <Header>
-        <Title>To Do App</Title>
-      </Header>
-      <Content>nfdgkjfdghj</Content>
-      <Footer>
-        <nav>
-          <List>
-            < LinkWrap>
-              <Link>Home</Link>
-            </ LinkWrap>
+    <Item>
+      <Checkbox checked={checked} onChange={handleCheckToggle} />
 
-            < LinkWrap>
-              <Link>Add</Link>
-            </ LinkWrap>
-          </List>
-        </nav>
-      </Footer>
-    </>
+      <Name>{name}</Name>
+      <div>
+        <IconButton href={`#/edit/${id}`}>
+          <Edit />
+        </IconButton>
+        <IconButton onClick ={handleDeleteItem}>
+          <Delete />
+        </IconButton>
+      </div>
+    </Item>
+  );
+};
+
+const Home = (props) => {
+  const { list, onCheckToggle,onDeleteItem} = props;
+  return (
+    <Layout>
+      <List>
+        {list.map(({ id, name, checked }) => (
+          <Task key ={id} id={id} name={name} checked={checked} onCheckToggle={onCheckToggle}
+          onDeleteItem={onDeleteItem}/>
+        ))}
+       
+      </List>
+    </Layout>
   );
 };
 export default Home;

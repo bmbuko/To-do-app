@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Link from "../Link/Link"
 
 const Header = styled.header`
-  background: #17c3b2;
+  background: #D81159;
   color: white;
   text-align: center;
   font-family: Arial, sans-serif;
@@ -38,13 +38,18 @@ const List = styled.ul`
 const LinkWrap = styled.li`
   width: 50%;
 `;
+const PAGE_TITLE_MAP={
+  'home':'To-Do List',
+  'add':'Adding Item',
+  'edit':'editing Item'
+}
 
 const Layout = (props) => {
-  const { children, ActivePage = 'home'} = props;
+  const { children, activePage = 'home'} = props;
   return (
     <>
       <Header>
-        <Title>To Do App</Title>
+        <Title>{PAGE_TITLE_MAP[activePage]}</Title>
       </Header>
       
 
@@ -52,13 +57,18 @@ const Layout = (props) => {
 
       <Footer>
         <nav>
+
           <List>
             <LinkWrap>
-              <Link>Home</Link>
+              <Link fullWidth disabled={activePage ==='home'} url="#/">
+               Back to Home</Link>
             </LinkWrap>
 
             <LinkWrap>
-              <Link>Add</Link>
+              <Link fullWidth disabled={activePage ==='add'}url="#/add">
+                Add new item
+                </Link>
+
             </LinkWrap>
           </List>
         </nav>

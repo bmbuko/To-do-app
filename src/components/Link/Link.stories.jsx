@@ -1,12 +1,15 @@
+import Global from '../Global/Global'
 import Link from './Link'
 
 const config ={
   title:'components/Link'  
 }
 export  default config
-const Default =()=><Link url='/test'> CLICK ME!</Link>
-const Full =()=><Link url='/test' fullWidth> CLICK ME!</Link>
-const Disabled =()=><Link disabled url='/test'> CLICK ME!</Link>
+const Default =()=><Global><Link url='/test'> CLICK ME!</Link></Global>
+
+const Full =()=><Global><Link url='/test' fullWidth ={true}> CLICK ME!</Link> </Global>
+
+const Disabled =()=><Global><Link disabled url='/test'> CLICK ME!</Link></Global>
 export{
     Default,
     Full,

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const LinkedElement = styled.a`
 font-weight:700;
-background:#EEE
+background:#EEE;
 display:inline-block;
 padding:1rem;
 text-transform:uppercase;
@@ -11,6 +11,8 @@ font-family:Arial,sans-serif;
 border:1px solid #CCC;
 border-radius:4px;
 text-decoration:none;
+text-align:center;
+white-space:non-wrap;
 width:${(props) => (props.fullWidth ? "100%" : "auto")};
 color:${(props) => (props.disabled ? "#999" : "#222")};
   cursor:${(props) => (props.disabled ? "not-allowed" : "pointer")};
